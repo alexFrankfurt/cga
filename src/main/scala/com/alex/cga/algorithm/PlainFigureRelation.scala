@@ -2,7 +2,7 @@ package com.alex.cga
 package algorithm
 
 import figure.PlainFigure
-import figure.plain.Point
+import com.alex.cga.figure.plain.{Segment, Point}
 import language.implicitConversions
 
 class PlainFigureRelation[A <: PlainFigure](figure: A) {
@@ -13,4 +13,7 @@ class PlainFigureRelation[A <: PlainFigure](figure: A) {
 object PlainFigureRelation {
   implicit def pointToPlainFigureRelation(p: Point): PlainFigureRelation[Point] =
     new PlainFigureRelation(p)
+
+  implicit def segmentToPlainFigureRelation(segment: Segment): PlainFigureRelation[Segment] =
+    new PlainFigureRelation(segment)
 }
