@@ -4,7 +4,7 @@ package plain
 
 
 
-class ConvexPolygon(vertices: Circle[Point]) extends PlainPolygon {
+class ConvexPolygon(vertices: Circle[Point]) extends PlainPolygon(vertices: Circle[Point]) {
 
 
 }

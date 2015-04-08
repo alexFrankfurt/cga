@@ -2,10 +2,6 @@ package com.alex.cga
 
 import math.abs
 
-object Circle {
-  def apply[B](lst: Seq[B]) = new Circle(lst.toList, lst.length)
-}
-
 case class Circle[+A](list: List[A], length: Int) {
 
   def apply(ind: Int) = {
@@ -13,5 +9,11 @@ case class Circle[+A](list: List[A], length: Int) {
     else list(length - abs(ind) % length)
   }
 
+  def head = list.head
+
   def foreach[U](f: A => U) = list.foreach(f)
+}
+
+object Circle {
+  def apply[B](lst: Seq[B]) = new Circle(lst.toList, lst.length)
 }

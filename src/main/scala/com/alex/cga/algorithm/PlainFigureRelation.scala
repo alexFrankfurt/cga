@@ -11,9 +11,6 @@ class PlainFigureRelation[A <: PlainFigure](figure: A) {
 }
 
 object PlainFigureRelation {
-  implicit def pointToPlainFigureRelation(p: Point): PlainFigureRelation[Point] =
-    new PlainFigureRelation(p)
-
-  implicit def segmentToPlainFigureRelation(segment: Segment): PlainFigureRelation[Segment] =
-    new PlainFigureRelation(segment)
+  implicit def plainFigureToPlainFigureRelation[A <: PlainFigure](f: A): PlainFigureRelation[A] =
+    new PlainFigureRelation[A](f)
 }

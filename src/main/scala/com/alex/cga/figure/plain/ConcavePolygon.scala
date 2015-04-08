@@ -3,7 +3,7 @@ package figure
 package plain
 
 
-class ConcavePolygon(vertices: Circle[Point]) extends PlainPolygon{
+class ConcavePolygon(vertices: Circle[Point]) extends PlainPolygon(vertices: Circle[Point]) {
 
 }
 

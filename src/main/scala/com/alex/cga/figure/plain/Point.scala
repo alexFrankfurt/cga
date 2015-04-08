@@ -4,11 +4,11 @@ package plain
 
 
 
-case class Point(x: Int, y: Int) extends PlainFigure{
+case class Point(x: Double, y: Double) extends PlainFigure{
   import Point._
   type Relation = Value
 }
 
 object Point extends Enumeration{
-  val On, Out = Value
+  val In, On, Out = Value
 }
