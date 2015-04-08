@@ -1,9 +1,12 @@
 package com.alex.cga
 
 import figure.{FreeVector, Angle}
-import figure.plain.{Segment, ConvexPolygon, Point, Line}
+import figure.plain.{Segment, ConvexPolygon, ConcavePolygon, Point, Line}
 import math.{acos, Pi}
 import algorithm.SimpleRelationResolvers._
+import algorithm.PlainFigureRelation._
+
+import scala.annotation.tailrec
 
 package object algorithm {
   implicit val binaryTest = (point: Point, polygon: ConvexPolygon) => {
@@ -26,11 +29,12 @@ package object algorithm {
       val edge = Segment(pointList(start), pointList(end))
       val zq = Segment(innerPoint, point)
 
-      if (new PlainFigureRelation(edge).R(zq) == Segment.NotIntersect) In
+      if ((edge R zq) == Segment.NotIntersect) In
       else Out
     } else Out
   }
 
+  @tailrec
   def pointSector(point: Point, list: Circle[Point], innerPoint: Point, start: Int, end: Int, sep: Int): (Int, Int) = {
     if (end - start == 1) (start, end)
     else if (∠(list(start), innerPoint, list(sep)) > ∠(list(start), innerPoint, point))
@@ -38,9 +42,11 @@ package object algorithm {
     else pointSector(point, list, innerPoint, sep, end, (sep + end) / 2)
   }
 
-  implicit val segPolTest = (figure1: Segment, figure2: ConvexPolygon) => {
-    import Segment._
-    On
+  implicit val octaneTest = (point: Point, polygon: ConcavePolygon) => {
+    import Point._
+    if (point in polygon.boundSquare) {
+      In
+    } else Out
   }
 
   implicit val segToSeg: (Segment, Segment) => Segment#Relation =

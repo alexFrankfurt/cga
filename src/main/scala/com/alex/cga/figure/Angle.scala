@@ -20,7 +20,7 @@ class Angle(val value: Double, val m: Angle#Measure) {
 
   override def equals(obj: scala.Any): Boolean = {
     val that = obj.asInstanceOf[Angle]
-    if (value == that.value && m == that.m) true
+    if (value - that.value < 2e-16 && m == that.m) true
     else false
   }
 
