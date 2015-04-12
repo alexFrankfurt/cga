@@ -9,4 +9,10 @@ object Container {
   val p4 = Point(10, 0)
   val p5 = Point(15, 10)
   val pol = ConcavePolygon(p1, p2, p3, p4, p5)
+
+  val pList = List(p1, p2, p3)
+
+  implicit class MovablePoint(points: List[Point]) {
+    def moved = points
+  }
 }
