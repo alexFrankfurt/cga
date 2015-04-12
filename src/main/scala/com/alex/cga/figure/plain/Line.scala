@@ -4,7 +4,7 @@ package plain
 
 
 
-case class Line(p1: Point, p2: Point) extends PlainFigure{
+case class Line(p1: Point, p2: Point) extends TwoPointEntity(p1, p2) with PlainFigure{
   import Line._
   type Relation = Value
 }

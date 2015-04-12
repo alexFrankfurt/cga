@@ -44,15 +44,24 @@ class AlgorithmSpec extends FlatSpec with Matchers{
     ∠(p1, p2, p3) should be (alpha)
   }
 
-  "octane algorithm" should "work correctly" in {
+  "octane function" should "return right numbers" in {
+    val p1 = Point(1, 0)
+    octane(p1) should be (8)
+  }
+
+
+  "octane test" should "work" in {
+    import Point._
     val p1 = Point(2, 0)
-    val p2 = Point(1, 1)
+    val p2 = Point(2, 2)
     val p3 = Point(0, 2)
     val p4 = Point(0, 0)
-    val pol = ConcavePolygon(p1, p2, p3, p4)
+    val concavePolygon = ConcavePolygon(p1, p2, p3, p4)
 
-    val tp = Point(0.5, 0.5)
+    val pt = Point(1/2, 1/2)
+    val rel = pt R concavePolygon
+    println(rel)
 
-    tp R pol should be (Point.In)
+    rel should be (In)
   }
 }

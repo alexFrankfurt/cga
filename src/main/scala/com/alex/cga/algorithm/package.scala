@@ -1,12 +1,13 @@
 package com.alex.cga
 
-import figure.{FreeVector, Angle}
+import figure.{TwoPointEntity, FreeVector, Angle}
 import figure.plain.{Segment, ConvexPolygon, ConcavePolygon, Point, Line}
 import math.{acos, Pi}
 import algorithm.SimpleRelationResolvers._
 import algorithm.PlainFigureRelation._
 
 import scala.annotation.tailrec
+import math.abs
 
 package object algorithm {
   implicit val binaryTest = (point: Point, polygon: ConvexPolygon) => {
@@ -21,11 +22,11 @@ package object algorithm {
         (firstPoint.y + middlePoint.y) / 2
       )
       val (start, end) = pointSector(point,
-                  pointList,
-                  innerPoint,
-                  1,
-                  pointList.length,
-                  pointList.length / 2)
+                                     pointList,
+                                     innerPoint,
+                                     1,
+                                     pointList.length,
+                                     pointList.length / 2)
       val edge = Segment(pointList(start), pointList(end))
       val zq = Segment(innerPoint, point)
 
@@ -42,11 +43,73 @@ package object algorithm {
     else pointSector(point, list, innerPoint, sep, end, (sep + end) / 2)
   }
 
-  implicit val octaneTest = (point: Point, polygon: ConcavePolygon) => {
+  implicit val octaneTest: (Point, ConcavePolygon) => Point#Relation = (q: Point, polygon: ConcavePolygon) => {
     import Point._
-    if (point in polygon.boundSquare) {
-      In
+    if (q in polygon.boundSquare) {
+      val (sum, onBorder: Boolean) = octaneStep(0,
+                                       polygon.vertices.length,
+                                       q,
+                                       polygon.vertices,
+                                       0,
+                                       onBorder = false)
+
+      if (onBorder) OnBorder
+      else {
+        sum match {
+          case s if abs(s) == 8 => In
+          case s if s == 0 => Out
+          case _ => Failure
+        }
+      }
     } else Out
+  }
+
+  @tailrec
+  def octaneStep(ind: Int, len: Int, q: Point, list: Circle[Point], sum: Int, onBorder: Boolean): (Int, Boolean) = {
+    import Point._
+    if (ind >= len) (sum, onBorder)
+    else {
+      val vi = Line(q, list(ind))
+      val `vi+1` = TwoPointEntity(q, list(ind + 1))
+      val di = octane(vi)
+      val `di+1` = octane(`vi+1`)
+      println(`di+1` - di)
+      val a = `di+1` - di match {
+        case x if x > 4 => x - 8
+        case x if x < -4 => x + 8
+        case x if abs(x) == 4 => list(ind + 1) match {
+          case pi1 if (pi1 R vi) == Lefter => 4
+          case pil if (pil R vi) == Righter => -4
+          case _ => true
+        }
+        case x => x
+      }
+      a match {
+        case true => (ind, true)
+        case x: Int => octaneStep(ind + 1, len, q, list, sum + x, onBorder)
+      }
+    }
+  }
+
+  def octane(vector: TwoPointEntity): Int = {
+    val x = vector.x
+    val y = vector.y
+    octane(Point(x, y))
+  }
+
+  def octane(p: Point): Int = {
+    val x = p.x
+    val y = p.y
+
+         if ( 0  <  y &&  y  <  x) 1
+    else if ( 0 <=  x &&  x  <  y) 2
+    else if ( 0  < -x && -x <=  y) 3
+    else if ( 0 <=  y &&  y  < -x) 4
+    else if ( 0  < -y && -y <= -x) 5
+    else if ( 0 <= -x && -x  < -y) 6
+    else if ( 0  <  x &&  x <= -y) 7
+    else if ( 0 <= -y && -y  <  x) 8
+    else -1
   }
 
   implicit val segToSeg: (Segment, Segment) => Segment#Relation =
@@ -78,6 +141,15 @@ package object algorithm {
                ||(segment2.p1, segment2.p2, segment2.p1, segment1.p2) > 0)
         Segment.NotIntersect
       else Segment.Intersect
+    }
+  }
+
+  implicit val pointToLine: (Point, Line) => Point#Relation = (p, l) => {
+    import Point._
+    ||(l.p1, l.p2, l.p1, p) match {
+      case x if x > 0 => Lefter
+      case x if x < 0 => Righter
+      case _ => On
     }
   }
 

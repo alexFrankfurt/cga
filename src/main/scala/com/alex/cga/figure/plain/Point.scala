@@ -11,4 +11,5 @@ case class Point(x: Double, y: Double) extends PlainFigure{
 
 object Point extends Enumeration{
   val In, On, Out = Value
+  val Lefter, Righter, OnBorder, Failure = Value
 }

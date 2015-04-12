@@ -11,3 +11,7 @@ class TwoPointEntity(p1: Point, p2: Point) {
     sqrt(x * x + y * y)
   }
 }
+
+object TwoPointEntity{
+  def apply(p1: Point, p2: Point) = new TwoPointEntity(p1, p2)
+}

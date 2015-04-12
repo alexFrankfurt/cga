@@ -18,21 +18,14 @@ object SimpleRelationResolvers {
   implicit class PolygonBoundSquare(pol: PlainPolygon) {
     def boundSquare: SquareBound = {
       val pointList = pol.vertices.list
-      val xMin = pointList./:(pointList.head.x) {
-        (x, p) => x min p.x
-      }
 
-      val xMax = pointList./:(pointList.head.x) {
-        (x, p) => x max p.x
-      }
+      val xMin = pointList./:(pointList.head.x)(_ min _.x)
 
-      val yMin = pointList./:(pointList.head.y) {
-        (y, p) => y min p.y
-      }
+      val xMax = pointList./:(pointList.head.x)(_ max _.x)
 
-      val yMax = pointList./:(pointList.head.y) {
-        (y, p) => y max p.y
-      }
+      val yMin = pointList./:(pointList.head.y)(_ min _.y)
+
+      val yMax = pointList./:(pointList.head.y)(_ max _.y)
 
       SquareBound(xMin, xMax, yMin, yMax)
     }
