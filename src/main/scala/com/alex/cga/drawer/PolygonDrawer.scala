@@ -3,6 +3,7 @@ package drawer
 
 import java.awt.geom.{Line2D, Ellipse2D}
 import java.awt.{Color, Graphics2D}
+import java.util.logging.Level
 
 import figure.PlainPolygon
 import figure.plain.Point
@@ -14,18 +15,12 @@ class PolygonDrawer(polygon: PlainPolygon) extends Panel {
   val xy0 = 200
 
   var stack = 0
-  val points = pList
+  var points = pList
   override def paintComponent(g: Graphics2D) = drawPolygon(g)
 
   def drawPolygon(implicit g: Graphics2D) = {
     if (stack == 0) {
       g.setColor(Color.BLACK)
-      for (i <- 0 until points.length) {
-        val pi = points(i)
-        g draw {
-          new Ellipse2D.Double(xy0 + pi.x, xy0 + pi.y, 1, 1)
-        }
-      }
       for (i <- 0 to polygon.num) {
         val pi = polygon.vertices(i)
         val `pi+1` = polygon.vertices(i + 1)
@@ -33,12 +28,21 @@ class PolygonDrawer(polygon: PlainPolygon) extends Panel {
         g.draw(line)
       }
       draw (points)
+      stack = 1
+      logger.log(Level.INFO, s"in stack = 0: $points")
     } else {
       draw (points.moved)
+      logger.log(Level.INFO, s"in stack = 1: $points")
     }
   }
 
   def draw(points: List[Point])(implicit g: Graphics2D) = {
+    for (i <- 0 until points.length) {
+      val pi = points(i)
+      g draw {
+        new Ellipse2D.Double(xy0 + pi.x, xy0 + pi.y, 3, 3)
+      }
+    }
 
   }
 }
