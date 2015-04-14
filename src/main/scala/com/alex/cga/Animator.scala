@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent
 import javax.swing.Timer
 
 import drawer._
-import Container.{pol, logger}
+import Container._
 
 import swing._
 import java.util.logging.{Level, Logger}
@@ -17,20 +17,18 @@ object Animator extends SimpleSwingApplication {
     val timer = new Timer(1000, Swing.ActionListener {e => work(e)})
     timer.start()
 
-    val polygon = new PolygonDrawer(pol)
-
-    val button = new Button("hi")
+    val image = new PolygonDrawer(pol)
 
     def work(e: ActionEvent) = {
       logger.log(Level.INFO, "action")
       peer.repaint()
-      polygon.repaint()
+      image.repaint()
     }
 
 
     contents = new BoxPanel(Orientation.Horizontal) {
       preferredSize = new Dimension(600, 600)
-      contents += polygon
+      contents += image
 
       border = Swing.EmptyBorder(10, 20, 10, 20)
     }

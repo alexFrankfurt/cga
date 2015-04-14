@@ -7,6 +7,8 @@ package plain
 case class Point(x: Double, y: Double) extends PlainFigure{
   import Point._
   type Relation = Value
+
+  def +(that: DoubleVector) = new Point(x + that.x, y + that.y)
 }
 
 object Point extends Enumeration{
