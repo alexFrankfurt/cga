@@ -9,6 +9,7 @@ case class Point(x: Double, y: Double) extends PlainFigure{
   type Relation = Value
 
   def +(that: Direction) = new Point(x + that.x, y + that.y)
+  def -(that: Direction) = new Point(x - that.x, y - that.y)
   override def toString = "Point(" + x.toString + ", " + y + ")"
 }
 

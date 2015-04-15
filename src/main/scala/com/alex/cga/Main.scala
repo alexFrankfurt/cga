@@ -51,8 +51,15 @@ object Main {
     val b = Segment(Point(-30.0, 40.0), Point(-30.0, -40.0))
     val res = iseg hit b
     println(res)
-    println(p1 R outerPolygon)
-    println(p2 R outerPolygon)
+    val st = compat.Platform.currentTime
+    for (i <- 0 to 20){
+      println(p1 R outerPolygon)
+      println(p2 R outerPolygon)
+    }
+
+    val et = compat.Platform.currentTime
+
+    println(et - st)
   }
 }
 

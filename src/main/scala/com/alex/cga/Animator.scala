@@ -14,7 +14,7 @@ object Animator extends SimpleSwingApplication {
     size = new Dimension(600, 600)
     title = "Swing"
 
-    val timer = new Timer(50, Swing.ActionListener {e => work(e)})
+    val timer = new Timer(1, Swing.ActionListener {e => work(e)})
     timer.start()
 
     val image = new PictureDrawer

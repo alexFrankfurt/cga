@@ -47,7 +47,7 @@ class PictureDrawer extends Panel {
     for (i <- 0 to pol.num) {
       val pi = pol.vertices(i)
       val `pi+1` = pol.vertices(i + 1)
-      g.draw(new Line2D.Double(xy0 + pi.x, xy0 + pi.y, xy0 + `pi+1`.x, xy0 + `pi+1`.y))
+      g.draw(new Line2D.Double(xy0 + pi.y, xy0 + pi.x, xy0 + `pi+1`.y, xy0 + `pi+1`.x))
     }
   }
 
@@ -55,7 +55,7 @@ class PictureDrawer extends Panel {
     for (i <- 0 until points.length) {
       val pi = points(i)
       g draw {
-        new Ellipse2D.Double(xy0 + pi.x, xy0 + pi.y, 3, 3)
+        new Ellipse2D.Double(xy0 + pi.y, xy0 + pi.x, 3, 3)
       }
     }
   }
@@ -83,7 +83,7 @@ class PictureDrawer extends Panel {
             val newD = pVector hit intersectedSegment
 //            logger.log(Level.INFO, "Got intersection: " + oldP + " : " + newP + "\nNew Direction: " + newD)
 //            logger.log(Level.INFO, intersectedSegment.toString)
-            loop(oldPts, oldDrs, oldP :: npts, newD :: ndrs)
+            loop(oldPts, oldDrs, oldP - oldD * 3 :: npts, newD :: ndrs)
         }
       }
     }
