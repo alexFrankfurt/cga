@@ -2,7 +2,7 @@ package com.alex.cga
 
 import math.abs
 
-case class Circle[+A](list: List[A], length: Int) {
+case class Circle[+A](list: Vector[A], length: Int) {
 
   def apply(ind: Int) = {
     if (ind >= 0) list(ind % length)
@@ -15,5 +15,5 @@ case class Circle[+A](list: List[A], length: Int) {
 }
 
 object Circle {
-  def apply[B](lst: Seq[B]) = new Circle(lst.toList, lst.length)
+  def apply[B](lst: Seq[B]) = new Circle(lst.toVector, lst.length)
 }

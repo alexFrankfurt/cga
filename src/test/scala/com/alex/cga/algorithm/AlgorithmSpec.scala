@@ -43,6 +43,13 @@ class AlgorithmSpec extends FlatSpec with Matchers{
     val alpha = Angle(Pi / 4 * 3)
     ∠(p1, p2, p3) should be (alpha)
   }
+  it should "-Pi / 4 equals 7 * Pi / 4" in {
+    val p1 = Point(1, 0)
+    val p2 = Point(0, 0)
+    val p3 = Point(1, -1)
+    val alpha = Angle(7 * Pi / 4)
+    ∠(p1, p2, p3) should be (alpha)
+  }
 
   "octane function" should "return right numbers" in {
     val p1 = Point(1, 0)
@@ -58,9 +65,8 @@ class AlgorithmSpec extends FlatSpec with Matchers{
     val p4 = Point(0, 0)
     val concavePolygon = ConcavePolygon(p1, p2, p3, p4)
 
-    val pt = Point(1/2, 1/2)
+    val pt = Point(1 / 2, 1 / 2)
     val rel = pt R concavePolygon
-    println(rel)
 
     rel should be (In)
   }

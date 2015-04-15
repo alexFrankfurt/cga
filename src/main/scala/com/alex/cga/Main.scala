@@ -25,15 +25,34 @@ object Main {
 
 
 
-    val p1 = Point(2, 0)
-    val p2 = Point(2, 2)
-    val p3 = Point(0, 2)
-    val p4 = Point(0, 0)
-    val concavePolygon = ConcavePolygon(p1, p2, p3, p4)
+//    val p1 = Point(2, 0)
+//    val p2 = Point(2, 2)
+//    val p3 = Point(0, 2)
+//    val p4 = Point(0, 0)
+//    val concavePolygon = ConcavePolygon(p1, p2, p3, p4)
+//
+//    val pt1 = Point(1, 1)
+//    val pt2 = Point(1 / 2, 1 / 2)
+//    val rel1 = pt1 R concavePolygon
+//    val rel2 = pt2 R concavePolygon
+//    println(rel1 + " : " + rel2)
 
-    val pt = Point(1, 1)
-    val rel = pt R concavePolygon
-    println(rel)
+    val p1 = Point(-29.9, -33.3)
+    val p2 = Point(-30.9, -34.3)
+    val iseg = Segment(p1, p2)
+    import Container.outerPolygon
+    import SimpleRelationResolvers._
+//    val op5 = Point(0, -50)
+//    val op6 = Point(30, -40)
+//    val seg = Segment(op5, op6)
+//    val a = iseg R seg
+
+    val a = Segment(p1, p2) intersect outerPolygon orNull
+    val b = Segment(Point(-30.0, 40.0), Point(-30.0, -40.0))
+    val res = iseg hit b
+    println(res)
+    println(p1 R outerPolygon)
+    println(p2 R outerPolygon)
   }
 }
 

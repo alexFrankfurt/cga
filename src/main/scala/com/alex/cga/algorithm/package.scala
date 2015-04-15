@@ -10,7 +10,7 @@ import scala.annotation.tailrec
 import math.abs
 
 package object algorithm {
-  implicit val binaryTest = (point: Point, polygon: ConvexPolygon) => {
+  implicit val binaryTest:(Point, ConvexPolygon) => Point#Relation= (point, polygon) => {
     import Point._
 
     if (point in polygon.boundSquare) {
@@ -24,7 +24,7 @@ package object algorithm {
       val (start, end) = pointSector(point,
                                      pointList,
                                      innerPoint,
-                                     1,
+                                     0,
                                      pointList.length,
                                      pointList.length / 2)
       val edge = Segment(pointList(start), pointList(end))
@@ -43,7 +43,7 @@ package object algorithm {
     else pointSector(point, list, innerPoint, sep, end, (sep + end) / 2)
   }
 
-  implicit val octaneTest: (Point, ConcavePolygon) => Point#Relation = (q: Point, polygon: ConcavePolygon) => {
+  implicit val octaneTest: (Point, ConcavePolygon) => Point#Relation = (q, polygon) => {
     import Point._
     if (q in polygon.boundSquare) {
       val (sum, onBorder: Boolean) = octaneStep(0,
@@ -73,7 +73,7 @@ package object algorithm {
       val `vi+1` = TwoPointEntity(q, list(ind + 1))
       val di = octane(vi)
       val `di+1` = octane(`vi+1`)
-      println(`di+1` - di)
+
       val a = `di+1` - di match {
         case x if x > 4 => x - 8
         case x if x < -4 => x + 8
@@ -101,7 +101,7 @@ package object algorithm {
     val x = p.x
     val y = p.y
 
-         if ( 0  <  y &&  y  <  x) 1
+         if ( 0  <  y &&  y <=  x) 1
     else if ( 0 <=  x &&  x  <  y) 2
     else if ( 0  < -x && -x <=  y) 3
     else if ( 0 <=  y &&  y  < -x) 4

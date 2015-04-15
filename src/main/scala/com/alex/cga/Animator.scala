@@ -14,13 +14,12 @@ object Animator extends SimpleSwingApplication {
     size = new Dimension(600, 600)
     title = "Swing"
 
-    val timer = new Timer(1000, Swing.ActionListener {e => work(e)})
+    val timer = new Timer(50, Swing.ActionListener {e => work(e)})
     timer.start()
 
-    val image = new PolygonDrawer(pol)
+    val image = new PictureDrawer
 
     def work(e: ActionEvent) = {
-      logger.log(Level.INFO, "action")
       peer.repaint()
       image.repaint()
     }

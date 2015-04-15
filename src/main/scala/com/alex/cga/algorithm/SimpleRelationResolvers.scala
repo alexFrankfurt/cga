@@ -2,9 +2,10 @@ package com.alex.cga
 package algorithm
 
 import PlainFigureRelation._
-import figure.PlainPolygon
+import com.alex.cga.figure.{FreeVector, Direction, PlainPolygon}
 import figure.plain.{Point, Segment}
 
+import math.abs
 import annotation.tailrec
 
 object SimpleRelationResolvers {
@@ -39,12 +40,25 @@ object SimpleRelationResolvers {
       val vertices = pol.vertices
       val length = vertices.length
       @tailrec
-      def loop(ind: Int): Boolean = {
-        if (ind == length) false
-        if ((Segment(vertices(ind), vertices(ind + 1)) R seg) == Segment.Intersect) true
+      def loop(ind: Int): Option[Segment] = {
+        val side = Segment(vertices(ind), vertices(ind + 1))
+        if (ind == length) None
+        else if ((side R seg) == Segment.Intersect)
+          Some(side)
         else loop(ind + 1)
       }
       loop(0)
+    }
+  }
+
+  implicit val intToFreeVector = (x: Double) => FreeVector(x, x)
+  implicit val freeVectorToDirection = (v: FreeVector) => Direction(v.x, v.y)
+
+  implicit class SegmentHitSegment(v: Segment) {
+    def hit(b: Segment): Direction = {
+      val bv = b.toFreeVector
+      val vv = v.toFreeVector
+      2 * abs((vv * bv) / (bv * bv)) * bv - vv
     }
   }
 }

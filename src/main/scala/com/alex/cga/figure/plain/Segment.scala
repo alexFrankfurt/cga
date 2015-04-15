@@ -10,6 +10,7 @@ case class Segment(p1: Point, p2: Point) extends TwoPointEntity(p1, p2) with Pla
 
   def toLine = Line(p1, p2)
   def toFreeVector = FreeVector(p1, p2)
+  override def toString = Segment.getClass.getName + "(" + p1 + ", " + p2 + ")"
 }
 
 object Segment extends Enumeration {
