@@ -37,14 +37,16 @@ object Container {
 
   val (fp1, fp2) = (Point(5.3, 5.8), Point(4, 7.3))
   val (pd1, pd2) = (Direction(0.03, 0.02), Direction(-0.04, 0.02))
+
   val (fp3, fp4) = (Point(1.1, -6), Point(3.8, 10))
   val (pd3, pd4) = (Direction(-0.03, 0.02), Direction(0.03, 0.01))
 
-  var points = List(fp1, fp2, fp3, fp4)
-  var directions = List(pd1, pd2, pd3, pd4)
+//  var points = List(fp1, fp2, fp3, fp4)
+//  var directions = List(pd1, pd2, pd3, pd4)
 
-//  var points = pts(5)
-//  var directions = drs(5)
+  val size = 10
+  var points = pts(size)
+  var directions = drs(size)
 
 //  val pts: mutable.MutableList[ActivePoint] =
 //    mutable.MutableList((p1, d1), (p2, d2), (p3, d3))
@@ -55,8 +57,8 @@ object Container {
       if (c >= n) list
       else {
         val a = Point(Random.nextInt(60) - 30, Random.nextInt(60) - 30)
-        if ((a R outerPolygon) == Point.In) loop(c + 1, a :: list)
-        else loop(c, list)
+        if ((a R outerPolygon) == Point.Out || (a R innerPolygon) == Point.In) loop(c, list)
+        else loop(c + 1, a :: list)
       }
     }
     loop(0, List())
@@ -67,7 +69,7 @@ object Container {
     def loop(c: Int, list: List[Direction]): List[Direction] = {
       if (c >= n) list
       else {
-        val a = Direction(Random.nextInt(100) / 1000, Random.nextInt(100) / 1000)
+        val a = Direction(Random.nextDouble(), Random.nextDouble())
         loop(c + 1, a :: list)
       }
     }

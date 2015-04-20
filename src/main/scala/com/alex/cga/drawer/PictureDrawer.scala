@@ -73,7 +73,6 @@ class PictureDrawer extends Panel {
         val pVector = Segment(oldP, newP)
         val rel = (newP R innerPolygon, newP R outerPolygon)
         g.setColor(Color.RED)
-        g.draw(new Line2D.Double(xy0 + oldP.x, xy0 + oldP.y, xy0 + newP.x, xy0 + newP.y))
 
         rel match {
           case (Out, In) => loop(oldPts, oldDrs, newP :: npts, oldD :: ndrs)
@@ -81,9 +80,10 @@ class PictureDrawer extends Panel {
           case (_, Out) =>
             val intersectedSegment = (pVector intersect outerPolygon).orNull
             val newD = pVector hit intersectedSegment
-//            logger.log(Level.INFO, "Got intersection: " + oldP + " : " + newP + "\nNew Direction: " + newD)
+//            logger.log(Level.INFO, "Got intersection: " + oldP + " : " + newP +
+//              "\nOld direction: " + oldD + "\nNew Direction: " + newD)
 //            logger.log(Level.INFO, intersectedSegment.toString)
-            loop(oldPts, oldDrs, oldP - oldD * 3 :: npts, newD :: ndrs)
+            loop(oldPts, oldDrs, oldP - oldD * 2 :: npts, newD :: ndrs)
         }
       }
     }

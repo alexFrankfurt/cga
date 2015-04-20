@@ -10,7 +10,7 @@ import scala.annotation.tailrec
 import math.abs
 
 package object algorithm {
-  implicit val binaryTest:(Point, ConvexPolygon) => Point#Relation= (point, polygon) => {
+  implicit val binaryTest:(Point, ConvexPolygon) => Point#Relation = (point, polygon) => {
     import Point._
 
     if (point in polygon.boundSquare) {
