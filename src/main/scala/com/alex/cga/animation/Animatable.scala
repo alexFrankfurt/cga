@@ -1,8 +1,16 @@
 package com.alex.cga.animation
 
+import java.awt.Graphics2D
 
+import scala.collection.LinearSeq
 
-trait Animatable {
-  type State
-  type Animation = IndexedSeq[State]
+trait Animatable[A, B] {
+  type StaticState = A
+  type DynamicState = B
+  type Animation = List[DynamicState]
+
+  val staticState: StaticState
+  var animation: Animation
+
+  def draw()(implicit g: Graphics2D): Unit
 }

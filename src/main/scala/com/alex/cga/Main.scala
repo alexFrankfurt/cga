@@ -85,27 +85,27 @@ object Main {
 //    val b = a.reverseIterator
 //
 //    while (b.hasNext) println(b.next())
-    import akka.pattern.ask
-    import concurrent.duration._
-    import concurrent.ExecutionContext.Implicits.global
-    import drawer.ActorEvent
-
-    implicit val timeout = Timeout(5.seconds)
-
-    implicit val system = ActorSystem("animation-system")
-    val b = system.actorOf(Props(new Drawer("jfkdl")), "pub")
-    val a = new Animator
-
-    val f = b ? "ref"
-    val r = Await.result(f, 5.seconds).asInstanceOf[Drawer]
-
-    println(r.publish(new ActorEvent))
-
-    a.top.listenTo(r)
-    a.startup(args)
-    b ! "Hello"
-    r.publish(new ActorEvent)
-    system.scheduler.schedule(100 milli, 500 milli, b, "some")
+//    import akka.pattern.ask
+//    import concurrent.duration._
+//    import concurrent.ExecutionContext.Implicits.global
+//    import drawer.ActorEvent
+//
+//    implicit val timeout = Timeout(5.seconds)
+//
+//    implicit val system = ActorSystem("animation-system")
+//    val b = system.actorOf(Props(new Drawer("jfkdl")), "pub")
+//    val a = new AnimatorFrame
+//
+//    val f = b ? "ref"
+//    val r = Await.result(f, 5.seconds).asInstanceOf[Drawer]
+//
+//    println(r.publish(new ActorEvent))
+//
+//    a.top.listenTo(r)
+//    a.startup(args)
+//    b ! "Hello"
+//    r.publish(new ActorEvent)
+//    system.scheduler.schedule(100 milli, 500 milli, b, "some")
   }
 }
 
