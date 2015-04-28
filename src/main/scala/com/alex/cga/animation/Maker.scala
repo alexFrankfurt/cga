@@ -23,12 +23,15 @@ class Maker extends Actor {
       frame.startup(args)
     case MakeAnimation(times) =>
       for (i <- 0 until times) visualization.next()
+      sender() ! StatusOk
     case Reverse =>
       visualization.reverse()
+      sender() ! StatusOk
   }
 }
 
 object Maker {
+  case object StatusOk
   case object Reverse
   case object FindNextState
   case class CreateFrame(args: Array[String])
