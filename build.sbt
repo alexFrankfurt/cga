@@ -8,5 +8,5 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0-SNAP4"
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" % "scala-swing_2.11" % "2.0.0-M2",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.9"
+  "com.typesafe.akka" %% "akka-actor" % "2.3.10"
 )

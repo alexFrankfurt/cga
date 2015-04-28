@@ -2,6 +2,8 @@ package com.alex.cga.animation
 
 import java.awt.Graphics2D
 
+import com.alex.cga.Container
+
 class Visualization(
     val staticState: StaticImage,
     var animation: List[DynamicImage])
@@ -27,5 +29,6 @@ class Visualization(
 
   def reverse(): Unit = {
     animation = animation.reverse
+    Container.logger.info("animation reversed!")
   }
 }

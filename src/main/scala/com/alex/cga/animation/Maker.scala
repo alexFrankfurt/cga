@@ -23,6 +23,8 @@ class Maker extends Actor {
       frame.startup(args)
     case MakeAnimation(times) =>
       for (i <- 0 until times) visualization.next()
+    case Reverse =>
+      visualization.reverse()
   }
 }
 
