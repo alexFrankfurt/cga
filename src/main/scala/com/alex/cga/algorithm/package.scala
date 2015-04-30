@@ -1,7 +1,7 @@
 package com.alex.cga
 
 import figure.{TwoPointEntity, FreeVector, Angle}
-import figure.plain.{Segment, ConvexPolygon, ConcavePolygon, Point, Line}
+import figure.plain.{Segment, ConvexPolygon, ConcavePolygon, Point, Line, Triangle}
 import math.{acos, Pi}
 import algorithm.SimpleRelationResolvers._
 import algorithm.PlainFigureRelation._
@@ -10,6 +10,33 @@ import scala.annotation.tailrec
 import math.abs
 
 package object algorithm {
+
+//  def quickHull(points: List[Point]) = {
+//    val sl = points.xyMin
+//    val sr = points.xyMax
+//    val res = left ::: right
+//    quickHullStep(sl, sr, points)
+//    res
+//  }
+//
+//  def quickHullStep(sl: Point, sr: Point, points: List[Point]) = {
+//    val line = Line(sl, sr)
+//    val (pl, pr) = points.partition{ p =>
+//      (p R line) == Point.Lefter
+//    }
+//    @tailrec
+//    def loop(plr: List[Point], maxArea: Double, resultPoint: Point): Point = {
+//      if (plr.isEmpty) resultPoint
+//      else {
+//        val pi = plr.head
+//        val area = Triangle(sl, pi, sr).parSquare
+//        if (area > maxArea) loop(plr, area, pi)
+//        else loop(plr, maxArea, resultPoint)
+//      }
+//    }
+//    loop(pl, 0, pl.head)
+//  }
+
   implicit val binaryTest:(Point, ConvexPolygon) => Point#Relation = (point, polygon) => {
     import Point._
 

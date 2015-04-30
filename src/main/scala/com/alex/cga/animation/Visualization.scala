@@ -9,7 +9,7 @@ class Visualization(
     var animation: List[DynamicImage])
     (implicit coordinateCenter: CoordinateCenter)
   extends Animatable[StaticImage, DynamicImage]
-  with Sheeps{
+  with Sheeps {
   val cs = coordinateCenter
   var lastState = 0
   var currentCapture = 0

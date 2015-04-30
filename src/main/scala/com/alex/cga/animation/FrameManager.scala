@@ -6,8 +6,8 @@ import swing.SimpleSwingApplication
 
 import Container._
 
-class Maker extends Actor {
-  import Maker._
+class FrameManager extends Actor {
+  import FrameManager._
 
   implicit val cs = CoordinateCenter(300, 300)
 
@@ -23,19 +23,20 @@ class Maker extends Actor {
       frame.startup(args)
     case MakeAnimation(times) =>
       for (i <- 0 until times) visualization.next()
-      sender() ! StatusOk
-    case Reverse =>
+      sender() ! AnimationMade
+    case ReverseAnimation =>
       visualization.reverse()
-      sender() ! StatusOk
+      sender() ! AnimationReady
   }
 }
 
-object Maker {
-  case object StatusOk
-  case object Reverse
+object FrameManager {
+  case object AnimationMade
+  case object AnimationReady
+  case object ReverseAnimation
   case object FindNextState
   case class CreateFrame(args: Array[String])
   case class MakeAnimation(times: Int)
 
-  def props() = Props(new Maker)
+  def props() = Props(new FrameManager)
 }

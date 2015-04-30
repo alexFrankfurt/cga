@@ -21,17 +21,8 @@ object SimpleRelationResolvers {
 
   implicit class PolygonBoundSquare(pol: PlainPolygon) {
     def boundSquare: SquareBound = {
-      val pointList = pol.vertices.list
-
-      val xMin = pointList./:(pointList.head.x)(_ min _.x)
-
-      val xMax = pointList./:(pointList.head.x)(_ max _.x)
-
-      val yMin = pointList./:(pointList.head.y)(_ min _.y)
-
-      val yMax = pointList./:(pointList.head.y)(_ max _.y)
-
-      SquareBound(xMin, xMax, yMin, yMax)
+      val pl = pol.vertices.list
+      SquareBound(pl.xMin, pl.xMax, pl.yMin, pl.yMax)
     }
   }
 
@@ -59,6 +50,26 @@ object SimpleRelationResolvers {
       val bv = b.toFreeVector
       val vv = v.toFreeVector
       2 * abs((vv * bv) / (bv * bv)) * bv - vv
+    }
+  }
+
+  implicit class SeqPointMinMax(seq: Seq[Point]) {
+    def xMin = seq./:(seq.head.x)(_ min _.x)
+
+    def xMax = seq./:(seq.head.x)(_ max _.x)
+
+    def yMin = seq./:(seq.head.y)(_ min _.y)
+
+    def yMax = seq./:(seq.head.y)(_ max _.y)
+
+    def xyMin = seq reduce { (p1, p2) =>
+      if (p2.x <= p1.x && p2.y <= p1.y) p2
+      else p1
+    }
+
+    def xyMax = seq reduce { (p1, p2) =>
+      if (p2.x >= p1.x && p2.y >= p1.y) p2
+      else p1
     }
   }
 }

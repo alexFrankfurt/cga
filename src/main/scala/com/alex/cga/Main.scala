@@ -3,7 +3,6 @@ package com.alex.cga
 import akka.actor.{Deploy, Props, ActorSystem, Actor}
 import akka.actor.Actor.Receive
 import akka.util.Timeout
-import com.alex.cga.drawer.Drawer
 import figure._
 import Angle._
 import plain._
@@ -17,9 +16,23 @@ import scala.swing.event.Event
 
 object Main {
   def main(args: Array[String]) {
+//    import collection.mutable
+//    val a: mutable.ListBuffer[Int] = mutable.ListBuffer(1, 2, 3)
+//    8 +: a
+//    println(a)
 //    val p1 = Point(1, 3)
 //    val p2 = Point(0, 2)
 //    val p3 = Point(-19, 10)
+//    val a = List(p1, p2, p3)
+//
+//    println(a.partition(_.x > 0))
+//    val b = Vector(p1, p2, p3)
+//
+//    import SimpleRelationResolvers.SeqPointMinMax
+//
+//    println(a.xyMin)
+//    println(b.xyMax)
+
 //    val seg1 = Segment(p1, p2)
 //    val seg2 = Segment(p3, p2)
 //    val pol2 = ConvexPolygon(p3, p2, p1)
