@@ -1,6 +1,6 @@
 package com.alex.cga
 
-import com.alex.cga.figure.plain.{Segment, ConvexPolygon, Point}
+import com.alex.cga.geometry.plain.{Segment, ConvexPolygon, Point}
 
 object Container {
   val p1 = Point(0, -1)

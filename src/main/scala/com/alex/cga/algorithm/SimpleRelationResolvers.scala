@@ -2,8 +2,9 @@ package com.alex.cga
 package algorithm
 
 import PlainFigureRelation._
-import com.alex.cga.figure.{FreeVector, Direction, PlainPolygon}
-import figure.plain.{Point, Segment}
+import geometry.Direction
+import geometry.plain.{Polygon, FreeVector, Point, Segment}
+import Extensions.SeqPointMinMax
 
 import math.abs
 import annotation.tailrec
@@ -19,15 +20,8 @@ object SimpleRelationResolvers {
       (p.x in squareBound.xRange) && (p.y in squareBound.yRange)
   }
 
-  implicit class PolygonBoundSquare(pol: PlainPolygon) {
-    def boundSquare: SquareBound = {
-      val pl = pol.vertices.list
-      SquareBound(pl.xMin, pl.xMax, pl.yMin, pl.yMax)
-    }
-  }
-
   implicit class SegmentIntersectPolygon(seg: Segment) {
-    def intersect(pol: PlainPolygon) = {
+    def intersect(pol: Polygon) = {
       val vertices = pol.vertices
       val length = vertices.length
       @tailrec
@@ -50,26 +44,6 @@ object SimpleRelationResolvers {
       val bv = b.toFreeVector
       val vv = v.toFreeVector
       2 * abs((vv * bv) / (bv * bv)) * bv - vv
-    }
-  }
-
-  implicit class SeqPointMinMax(seq: Seq[Point]) {
-    def xMin = seq./:(seq.head.x)(_ min _.x)
-
-    def xMax = seq./:(seq.head.x)(_ max _.x)
-
-    def yMin = seq./:(seq.head.y)(_ min _.y)
-
-    def yMax = seq./:(seq.head.y)(_ max _.y)
-
-    def xyMin = seq reduce { (p1, p2) =>
-      if (p2.x <= p1.x && p2.y <= p1.y) p2
-      else p1
-    }
-
-    def xyMax = seq reduce { (p1, p2) =>
-      if (p2.x >= p1.x && p2.y >= p1.y) p2
-      else p1
     }
   }
 }

@@ -4,7 +4,7 @@ package algorithm
 import SimpleRelationResolvers._
 import Container.{cp, seg}
 import org.scalatest.{Matchers, FlatSpec}
-import figure.plain.Segment
+import geometry.plain.Segment
 
 class SimpleRelationResolversSpec extends  FlatSpec with Matchers{
   "segment" should "intersect polygon" in {

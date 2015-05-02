@@ -3,8 +3,8 @@ package algorithm
 
 import org.scalatest.{FlatSpec, Matchers}
 import math.Pi
-import figure.Angle
-import figure.plain.{ConcavePolygon, Point}
+import geometry.Angle
+import geometry.plain.{ConcavePolygon, Point}
 import algorithm.PlainFigureRelation._
 
 class AlgorithmSpec extends FlatSpec with Matchers{

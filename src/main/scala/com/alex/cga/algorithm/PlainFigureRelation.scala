@@ -1,16 +1,16 @@
 package com.alex.cga
 package algorithm
 
-import figure.PlainFigure
-import com.alex.cga.figure.plain.{Segment, Point}
-import language.implicitConversions
+import geometry.plain.Figure
 
-class PlainFigureRelation[A <: PlainFigure](figure: A) {
+import scala.language.implicitConversions
 
-  def R[B](figure2: B)(implicit algo: (A, B) => A#Relation) = algo(figure, figure2)
+class PlainFigureRelation[A <: Figure](figure: A) {
+
+  def R[B](figure2: B)(implicit algorithm: (A, B) => A#Relation) = algorithm(figure, figure2)
 }
 
 object PlainFigureRelation {
-  implicit def plainFigureToPlainFigureRelation[A <: PlainFigure](f: A): PlainFigureRelation[A] =
+  implicit def plainFigureToPlainFigureRelation[A <: Figure](f: A): PlainFigureRelation[A] =
     new PlainFigureRelation[A](f)
 }

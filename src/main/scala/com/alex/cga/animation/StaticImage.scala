@@ -1,6 +1,6 @@
 package com.alex.cga.animation
 
-import com.alex.cga.figure.plain.{ConcavePolygon, ConvexPolygon}
+import com.alex.cga.geometry.plain.{ConcavePolygon, ConvexPolygon}
 
 
 case class StaticImage(

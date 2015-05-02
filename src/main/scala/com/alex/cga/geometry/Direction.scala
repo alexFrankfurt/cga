@@ -1,4 +1,4 @@
-package com.alex.cga.figure
+package com.alex.cga.geometry
 
 
 

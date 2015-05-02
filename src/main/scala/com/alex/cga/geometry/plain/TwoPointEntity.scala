@@ -1,7 +1,6 @@
-package com.alex.cga.figure
+package com.alex.cga.geometry.plain
 
-import plain.Point
-import math.sqrt, math.abs
+import scala.math.sqrt
 
 class TwoPointEntity(p1: Point, p2: Point) {
   val x = p2.x - p1.x

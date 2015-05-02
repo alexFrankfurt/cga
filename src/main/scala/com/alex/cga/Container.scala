@@ -4,8 +4,8 @@ import java.util.logging.{Level, Logger}
 
 import algorithm.PlainFigureRelation._
 import algorithm._
-import figure.Direction
-import figure.plain._
+import geometry.Direction
+import geometry.plain._
 
 import scala.annotation.tailrec
 import scala.collection.mutable

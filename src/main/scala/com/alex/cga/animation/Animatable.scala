@@ -2,8 +2,6 @@ package com.alex.cga.animation
 
 import java.awt.Graphics2D
 
-import scala.collection.LinearSeq
-
 trait Animatable[A, B] {
   type StaticState = A
   type DynamicState = B

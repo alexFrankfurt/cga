@@ -7,8 +7,8 @@ import com.alex.cga.algorithm
 import algorithm.PlainFigureRelation._
 import algorithm.SimpleRelationResolvers._
 import algorithm.{binaryTest, octaneTest}
-import com.alex.cga.figure.{Direction, PlainPolygon}
-import com.alex.cga.figure.plain.{Segment, ConcavePolygon, ConvexPolygon, Point}
+import com.alex.cga.geometry.Direction
+import com.alex.cga.geometry.plain._
 import Point._
 
 import scala.annotation.tailrec
@@ -54,7 +54,7 @@ trait Sheeps{
     drawPolygon(outerPolygon)
   }
 
-  def drawPolygon(pol: PlainPolygon)(implicit g: Graphics2D): Unit = {
+  def drawPolygon(pol: Polygon)(implicit g: Graphics2D): Unit = {
     for (i <- 0 to pol.num) {
       val pi = pol.vertices(i)
       val `pi+1` = pol.vertices(i + 1)

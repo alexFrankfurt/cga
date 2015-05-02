@@ -1,7 +1,7 @@
 package com.alex.cga.animation
 
-import com.alex.cga.figure.Direction
-import com.alex.cga.figure.plain.Point
+import com.alex.cga.geometry.Direction
+import com.alex.cga.geometry.plain.Point
 import language.implicitConversions
 
 case class DynamicImage(points: List[Point] = List(), directions: List[Direction] = List()){

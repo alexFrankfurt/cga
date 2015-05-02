@@ -1,7 +1,7 @@
-package com.alex.cga.figure
+package com.alex.cga.geometry
 
 import org.scalatest.{Matchers, FlatSpec}
-import plain.Point
+import com.alex.cga.geometry.plain.{FreeVector, Point}
 
 class VectorSpec extends FlatSpec with Matchers{
   "Vector" should "be calculated right" in {

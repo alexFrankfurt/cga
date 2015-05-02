@@ -1,10 +1,10 @@
 package com.alex.cga
-package figure
+package geometry
 package plain
 
 
 
-class ConvexPolygon(vertices: Circle[Point]) extends PlainPolygon(vertices: Circle[Point]) {
+class ConvexPolygon(vertices: Circle[Point]) extends Polygon(vertices: Circle[Point]) {
 
 
 }

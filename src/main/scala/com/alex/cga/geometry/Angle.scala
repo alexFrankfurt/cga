@@ -1,5 +1,5 @@
 package com.alex.cga
-package figure
+package geometry
 
 import math.Pi
 

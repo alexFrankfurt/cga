@@ -3,18 +3,14 @@ package com.alex.cga
 import java.awt.event.ActionEvent
 import javax.swing.Timer
 
-import com.alex.cga.Container._
-import com.alex.cga.animation.Visualization
-import com.alex.cga.drawer._
+import animation.Visualization
 
 import scala.swing._
 
 class AnimatorFrame(visualization: Visualization) extends SimpleSwingApplication {
   val top = new MainFrame {
-    size = new Dimension(600, 600)
-    title = "Swing"
-
     val image = new PictureDrawer(visualization)
+    title = "Swing"
 
     def work(e: ActionEvent) = {
       peer.repaint()

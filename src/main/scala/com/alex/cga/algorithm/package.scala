@@ -1,8 +1,9 @@
 package com.alex.cga
 
-import figure.{TwoPointEntity, FreeVector, Angle}
-import figure.plain.{Segment, ConvexPolygon, ConcavePolygon, Point, Line, Triangle}
+import geometry.Angle
+import geometry.plain._
 import math.{acos, Pi}
+import algorithm.Extensions.PolygonBoundSquare
 import algorithm.SimpleRelationResolvers._
 import algorithm.PlainFigureRelation._
 
