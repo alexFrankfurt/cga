@@ -1,26 +1,41 @@
 package com.alex.cga.animation
 
-import java.awt.Graphics2D
+import swing.Graphics2D
 import java.awt.geom.{Ellipse2D, Line2D}
 
-import com.alex.cga.algorithm
+import com.alex.cga.{Container, algorithm}
+import Container.{innerPolygon, outerPolygon, pts, drs}
 import algorithm.PlainFigureRelation._
 import algorithm.SimpleRelationResolvers._
 import algorithm.{binaryTest, octaneTest}
 import com.alex.cga.geometry.Direction
 import com.alex.cga.geometry.plain._
 import Point._
+import com.alex.cga.sugar.Extensions.{draw => drawFigure}
 
 import scala.annotation.tailrec
 
-trait Sheeps{
-  val cs: CoordinateCenter
-  val innerPolygon: ConcavePolygon
-  val outerPolygon: ConvexPolygon
+class Sheeps { self: Animatable with MakeAnimation with DrawGraphics2DAnimation =>
+  import Sheeps.SheepsInFence
+  implicit val cs: CoordinateCenter = Container.cs
+  val numOfPoints = 10
 
-  def drawAll(points: List[Point])(implicit g: Graphics2D): Unit = {
-    drawPolygons
-    draw(points)
+  type DynamicState = SheepsInFence
+
+  val initialState = (innerPolygon, (pts(numOfPoints), drs(numOfPoints)), outerPolygon)
+
+  def draw(ds: DynamicState)(implicit g: Graphics2D) = {
+    val (ip, (pts, _), op) = ds
+
+    drawFigure(ip)
+    drawFigure(pts)
+    drawFigure(op)
+  }
+
+  def findNewState(ind: Int) = {
+    val (ip, (pts, drs), op) = animation(ind)
+    val (npts, ndrs) = findNext(drs, pts)
+    (ip, (npts, ndrs), op)
   }
 
   def findNext(directions: List[Direction], points: List[Point]) = {
@@ -48,26 +63,8 @@ trait Sheeps{
     }
     loop(points, directions, List(), List())
   }
+}
 
-  def drawPolygons(implicit g: Graphics2D): Unit = {
-    drawPolygon(innerPolygon)
-    drawPolygon(outerPolygon)
-  }
-
-  def drawPolygon(pol: Polygon)(implicit g: Graphics2D): Unit = {
-    for (i <- 0 to pol.num) {
-      val pi = pol.vertices(i)
-      val `pi+1` = pol.vertices(i + 1)
-      g.draw(new Line2D.Double(cs.x + pi.y, cs.x + pi.x, cs.y + `pi+1`.y, cs.y + `pi+1`.x))
-    }
-  }
-
-  def draw(points: List[Point])(implicit g: Graphics2D): Unit = {
-    for (i <- 0 until points.length) {
-      val pi = points(i)
-      g draw {
-        new Ellipse2D.Double(cs.y + pi.y, cs.x + pi.x, 3, 3)
-      }
-    }
-  }
+object Sheeps {
+  type SheepsInFence = (ConcavePolygon, (List[Point], List[Direction]), ConvexPolygon)
 }

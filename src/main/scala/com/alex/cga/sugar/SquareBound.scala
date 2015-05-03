@@ -1,6 +1,4 @@
-package com.alex.cga.algorithm
-
-
+package com.alex.cga.sugar
 
 class SquareBound(
     xMin: Double,

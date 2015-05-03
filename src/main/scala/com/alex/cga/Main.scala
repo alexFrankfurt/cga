@@ -11,5 +11,7 @@ object Main {
 //    val seg1 = Segment(p1, p2)
 //    val seg2 = Segment(p3, p2)
 //    val pol2 = ConvexPolygon(p3, p2, p1)
+
+
   }
 }

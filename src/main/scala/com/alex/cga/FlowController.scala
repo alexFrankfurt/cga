@@ -9,10 +9,8 @@ class FlowController(args: Array[String]) extends Actor{
   def receive = {
     case Start =>
       val maker = context.actorOf(FrameManager.props(), "maker")
-      maker ! MakeAnimation(2000)
-    case AnimationMade =>
-      sender() ! ReverseAnimation
-    case AnimationReady =>
+      maker ! AppendAnimation(2000)
+    case AnimationAppended =>
       sender() ! CreateFrame(args)
   }
 }

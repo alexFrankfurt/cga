@@ -4,6 +4,7 @@ import java.util.logging.{Level, Logger}
 
 import algorithm.PlainFigureRelation._
 import algorithm._
+import com.alex.cga.animation.CoordinateCenter
 import geometry.Direction
 import geometry.plain._
 
@@ -16,6 +17,7 @@ object Container {
 
   val logger = Logger.getLogger(Container.getClass.getName)
 
+  val cs = CoordinateCenter(300, 300)
   val p1 = Point(5, 5)
   val p2 = Point(-8, -10)
   val p3 = Point(0, -3)
@@ -69,7 +71,7 @@ object Container {
     def loop(c: Int, list: List[Direction]): List[Direction] = {
       if (c >= n) list
       else {
-        val a = Direction(Random.nextDouble(), Random.nextDouble())
+        val a = Direction(Random.nextDouble() / 10, Random.nextDouble() / 10)
         loop(c + 1, a :: list)
       }
     }

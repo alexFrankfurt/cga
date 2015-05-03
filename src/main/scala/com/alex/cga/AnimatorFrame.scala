@@ -3,13 +3,13 @@ package com.alex.cga
 import java.awt.event.ActionEvent
 import javax.swing.Timer
 
-import animation.Visualization
+import animation.{Animatable, DrawGraphics2DAnimation}
 
-import scala.swing._
+import swing._
 
-class AnimatorFrame(visualization: Visualization) extends SimpleSwingApplication {
+class AnimatorFrame(visualization: Animatable with DrawGraphics2DAnimation) extends SimpleSwingApplication {
   val top = new MainFrame {
-    val image = new PictureDrawer(visualization)
+    val image = new PictureDrawerPanel(visualization)
     title = "Swing"
 
     def work(e: ActionEvent) = {

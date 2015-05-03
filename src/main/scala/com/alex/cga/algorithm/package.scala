@@ -1,9 +1,10 @@
 package com.alex.cga
 
+import sugar.Extensions
 import geometry.Angle
 import geometry.plain._
 import math.{acos, Pi}
-import algorithm.Extensions.PolygonBoundSquare
+import Extensions.PolygonBoundSquare
 import algorithm.SimpleRelationResolvers._
 import algorithm.PlainFigureRelation._
 

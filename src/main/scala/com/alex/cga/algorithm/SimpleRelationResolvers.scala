@@ -2,9 +2,9 @@ package com.alex.cga
 package algorithm
 
 import PlainFigureRelation._
+import sugar.SquareBound
 import geometry.Direction
 import geometry.plain.{Polygon, FreeVector, Point, Segment}
-import Extensions.SeqPointMinMax
 
 import math.abs
 import annotation.tailrec
