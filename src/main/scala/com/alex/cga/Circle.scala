@@ -9,9 +9,15 @@ case class Circle[+A](list: Vector[A], length: Int) {
     else list(length - abs(ind) % length)
   }
 
+  def last = list(length - 1)
+
   def head = list.head
 
   def foreach[U](f: A => U) = list.foreach(f)
+
+  def view = list.view
+
+  def tail = list.tail
 }
 
 object Circle {

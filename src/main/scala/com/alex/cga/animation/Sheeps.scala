@@ -17,8 +17,9 @@ import scala.annotation.tailrec
 
 class Sheeps { self: Animatable with MakeAnimation with DrawGraphics2DAnimation =>
   import Sheeps.SheepsInFence
-  implicit val cs: CoordinateCenter = Container.cs
+
   val numOfPoints = 10
+  val delay = 4
 
   type DynamicState = SheepsInFence
 

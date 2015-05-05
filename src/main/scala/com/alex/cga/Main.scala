@@ -11,7 +11,12 @@ object Main {
 //    val seg1 = Segment(p1, p2)
 //    val seg2 = Segment(p3, p2)
 //    val pol2 = ConvexPolygon(p3, p2, p1)
+    val a = List(1, 2, 3)
+    val res = for {
+      (el, i) <- a.view zip a.tail
+    } yield (el, i)
+    println(res.force)
 
-
+    println(Seq(1, 2) :+ 8)
   }
 }

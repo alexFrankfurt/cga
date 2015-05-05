@@ -6,7 +6,7 @@ import swing.SimpleSwingApplication
 
 class FrameManager extends Actor {
   import FrameManager._
-  val visualization = new Sheeps with Animatable with animation.MakeAnimation with DrawGraphics2DAnimation
+  val visualization = new DynamicConvexHull with Animatable with MakeAnimation with DrawGraphics2DAnimation
   var frame: SimpleSwingApplication = _
 
   def receive = {

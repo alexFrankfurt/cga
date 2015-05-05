@@ -77,4 +77,12 @@ object Container {
     }
     loop(0, List())
   }
+
+  /** Generates random point in interval (-n, n).
+   *
+   *  @param n right border of interval.
+   */
+  def randPoint(n: Int) = {
+    Point(Random.nextDouble() * n * 2 - n, Random.nextDouble() * n * 2 - n)
+  }
 }

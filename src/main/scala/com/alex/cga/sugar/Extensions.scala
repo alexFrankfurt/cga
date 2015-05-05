@@ -1,8 +1,6 @@
 package com.alex.cga
 package sugar
 
-import com.alex.cga.sugar.SquareBound
-
 import swing.Graphics2D
 import java.awt.geom.{Line2D, Ellipse2D}
 import com.alex.cga.animation.CoordinateCenter

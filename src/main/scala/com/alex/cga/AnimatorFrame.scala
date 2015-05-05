@@ -17,7 +17,7 @@ class AnimatorFrame(visualization: Animatable with DrawGraphics2DAnimation) exte
       image.repaint()
     }
 
-    val timer = new Timer(4, Swing.ActionListener {e => work(e)})
+    val timer = new Timer(visualization.delay, Swing.ActionListener {e => work(e)})
     timer.start()
 
     contents = new BoxPanel(Orientation.Horizontal) {
