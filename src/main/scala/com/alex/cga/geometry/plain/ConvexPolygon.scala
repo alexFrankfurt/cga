@@ -13,6 +13,8 @@ class ConvexPolygon(vertices: Circle[Point]) extends Polygon(vertices: Circle[Po
   }
 
   def view = vertices.view
+
+  override def toString = "ConvexPolygon( " + vertices + ")"
 }
 
 object ConvexPolygon {
